@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Como llamar a una función JavaScript desde el HTML</title>
+    <link
+      type="text/css"
+      rel="shortcut icon"
+      href="https://urianviera.com/img/icons/favicon-32x32.png" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -24,7 +28,7 @@
 
       <p>
         El evento <strong> onclick,</strong> este ejecuta una cierta
-        funcionalidad cuando se hace clic en un botón por asi decirlo.
+        funcionalidad cuando se hace click en un botón por asi decirlo.
       </p>
 
       <div class="row">
@@ -32,11 +36,17 @@
           <button class="btn btn-info" onclick="miFuncion()">
             Haz click aquí
           </button>
-          <a href="#" class="btn btn-link"> Quien eres? </a>
+          <a
+            href="#"
+            class="btn btn-link"
+            onclick="quienSoy('Urian','Ingeniero')">
+            Quien eres?
+          </a>
           <hr />
           <p>
-            A través del método "addEventListener", este es un escuchador que
-            indica al navegador que este atento a la interacción del usuario
+            A través del método <strong>addEventListener</strong>, este es un
+            escuchador que indica al navegador que este atento a la interacción
+            del usuario
           </p>
           <button class="btn btn-warning" id="miBoton">
             Click para saludar
@@ -50,15 +60,31 @@
       /*
        * Usando el evento onclick
        */
+      //Usando una  funcion tradicional
       function miFuncion() {
-        console.log("click");
+        console.log("click mi funcion");
       }
+
+      //Usando una función de flecha
+      const quienSoy = (nombre, prof) => {
+        console.log("Soy ", nombre, prof);
+        console.log("Soy " + nombre, prof);
+        console.log(`soy ${nombre} ${prof}`);
+      };
 
       /*
        * Usando el método addEventListener
        */
-      document.querySelector("#miBoton").addEventListener("click", saludar);
+      let btn = document.querySelector("#miBoton");
+      if (btn != null) {
+        btn.addEventListener("click", saludar);
+      } else {
+        console.log("No existe");
+      }
+
       function saludar() {
+        document.body.style.backgroundColor = "green";
+        document.body.style.color = "#fff";
         console.log("click en el boton saludar");
       }
     </script>
